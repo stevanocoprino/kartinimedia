@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,5 @@ use App\Http\Controllers\HomepageController;
 
 // Home
 Route::get('/', [HomepageController::class, 'index']);
+Route::get('/category', [ArticleController::class, 'category']);
+Route::get('/single', [ArticleController::class, 'single']);
