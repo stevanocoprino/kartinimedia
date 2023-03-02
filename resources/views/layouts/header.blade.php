@@ -11,17 +11,17 @@
                     <a href="javascript:;" id="closeNavbar">
                         <img src="{{ asset('assets/images/close-black.svg') }}" alt="">
                     </a>
+                    @foreach(Helper::header_menu() as $nt )
+                    <li><a href="#">{{ $nt["news_type"] }}</a></li>
+                    @endforeach
                     <li>
-                        <a href="javascript:;">Menu</a>
+                        <a href="javascript:;">Video</a>
                         <ul class="navbars-sub">
-                            <li><a href="#">SubMenu</a></li>
-                            <li><a href="#">SubMenu</a></li>
-                            <li><a href="#">SubMenu</a></li>
+                            @foreach(Helper::video_menu() as $vm )
+                            <li><a href="#">{{ $vm->vid_type }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Menu</a></li>
                 </ul>
             </div>
             <div class="col-12 col-lg-3">

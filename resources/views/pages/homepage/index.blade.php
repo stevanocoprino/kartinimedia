@@ -3,20 +3,22 @@
 
 <section>
     <div class="slider-home">
-        <div class="slider-home-item" style="background-image: url('https://via.placeholder.com/1600.png/09f/fff');">
+        @foreach($hotNews as $hn)
+        <div class="slider-home-item" style="background-image: url('{{ ENV("IMAGE_URL").$hn["pic"] }}');">
             <div class="slider-home-item-bottom">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-6 text-center">
-                            <span class="title-tag d-block">Selebrity</span>
-                            <h2 class="title-banner mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+                            <span class="title-tag d-block">{{ $hn["kategori"] }}</span>
+                            <h2 class="title-banner mb-5">{{ $hn["title"] }}</h2>
                             <a href="#" class="button-main">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="slider-home-item" style="background-image: url('https://via.placeholder.com/1600.png/09f/fff');">
+        @endforeach
+        {{-- <div class="slider-home-item" style="background-image: url('https://via.placeholder.com/1600.png/09f/fff');">
             <div class="slider-home-item-bottom">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -41,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 
