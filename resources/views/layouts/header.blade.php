@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-3">
-                <a href="#" class="header-logo">
+                <a href="{{ URL::to('/') }}" class="header-logo">
                     <img src="{{ asset('assets/images/logo.svg') }}" alt="">
                 </a>
             </div>
@@ -12,13 +12,13 @@
                         <img src="{{ asset('assets/images/close-black.svg') }}" alt="">
                     </a>
                     @foreach(Helper::header_menu() as $nt )
-                    <li><a href="#">{{ $nt["news_type"] }}</a></li>
+                    <li><a href="{{ URL::to('/'.$nt["slug"]) }}">{{ $nt["news_type"] }}</a></li>
                     @endforeach
                     <li>
                         <a href="javascript:;">Video</a>
                         <ul class="navbars-sub">
                             @foreach(Helper::video_menu() as $vm )
-                            <li><a href="#">{{ $vm->vid_type }}</a></li>
+                            <li><a href="{{ URL::to('/video/'.$vm->slug) }}">{{ $vm->vid_type }}</a></li>
                             @endforeach
                         </ul>
                     </li>

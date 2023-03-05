@@ -17,5 +17,7 @@ use App\Http\Controllers\ArticleController;
 
 // Home
 Route::get('/', [HomepageController::class, 'index']);
-Route::get('/category', [ArticleController::class, 'category']);
+// Route::get('/category', [ArticleController::class, 'category']);
 Route::get('/single', [ArticleController::class, 'single']);
+Route::get('/{category}', [ArticleController::class, 'category']);
+Route::get('/{category}/{slug}', [ArticleController::class, 'detail']);
