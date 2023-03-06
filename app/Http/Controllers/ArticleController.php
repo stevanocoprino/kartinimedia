@@ -16,6 +16,13 @@ class ArticleController extends Controller
 {
     public function category($cat, Request $request)
     {
+        if(isset($request->page))
+        {
+            $pageNumber=$request->page;
+        }
+        else{
+            $pageNumber=1;
+        }
 
         if($cat=="hot")
         {
@@ -24,8 +31,7 @@ class ArticleController extends Controller
             // ->where('news_id','1259')
             ->where('publish_on','<=',date("Y-m-d H:i:s"))
             ->orderBy('publish_on','DESC')
-            ->limit('19')
-            ->get();
+            ->paginate(19, ['*'], 'page', $pageNumber);
         }
         else{
             $getCat = NewsTypes::where('slug',$cat)->first();
@@ -37,8 +43,7 @@ class ArticleController extends Controller
             
             ->where('news_type','=',$getCat->news_type_id??"")
             ->orderBy('publish_on','DESC')
-            ->limit('19')
-            ->get();
+            ->paginate(19, ['*'], 'page', $pageNumber);
         }
 
         if($category->isEmpty()) 
@@ -48,13 +53,17 @@ class ArticleController extends Controller
             // ->where('news_id','1259')
             ->where('publish_on','<=',date("Y-m-d H:i:s"))
             ->orderBy('publish_on','DESC')
-            ->limit('19')
-            ->get();
+            ->paginate(19, ['*'], 'page', $pageNumber);
         }
+
+
+        $totalPage=$category->lastPage();
 
         return view('pages.article.category', compact(
             'category',
             'cat',
+            'totalPage',
+            'pageNumber',
         ));
     }
 

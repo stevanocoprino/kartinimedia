@@ -47,9 +47,51 @@
            
             
         </div>
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-12 text-center">
-                <a href="#" class="button-main c-black">Selengkapnya</a>
+                <ul class="pagination">
+                    @if($totalPage==1)
+                    &nbsp;
+                    @elseif($totalPage<6)
+                    @for($i=1;$i<=$totalPage;$i++)
+                    @if($i==$pageNumber)
+                    <li class=" current">{{ $i }}</li>
+                    @else
+                    <li><a href="{{ URL::to('/'.$cat.'?page='.$i) }}" >{{ $i }}</a></li>
+                    @endif
+                    @endfor
+                    @elseif($pageNumber<6)
+                    @for($i=1;$i<=6;$i++)
+                    @if($i==$pageNumber)
+                    <li class=" current">{{ $i }}</li>
+                    @else
+                    <li><a href="{{ URL::to('/'.$cat.'?page='.$i) }}" >{{ $i }}</a></li>
+                    @endif
+                    @endfor
+                    <li><span>Next ></span></li>
+                    @elseif(($totalPage-6)<$pageNumber)
+                    <li><span>< Prev</span></li>
+                    @for($i=($totalPage-6);$i<=$totalPage;$i++)
+                    @if($i==$pageNumber)
+                    <li class=" current">{{ $i }}</li>
+                    @else
+                    <li><a href="{{ URL::to('/'.$cat.'?page='.$i) }}" >{{ $i }}</a></li>
+                    @endif
+                    @endfor
+                    
+                    @else
+                    <li><span>< Prev</span></li>
+                    @for($i=($pageNumber-3);$i<=($pageNumber+3);$i++)
+                    @if($i==$pageNumber)
+                    <li class=" current">{{ $i }}</li>
+                    @else
+                    <li><a href="{{ URL::to('/'.$cat.'?page='.$i) }}" >{{ $i }}</a></li>
+                    @endif
+                    @endfor
+                    <li><span>Next ></span></li>
+                    @endif
+                    
+                </ul>
             </div>
         </div>
     </div>
